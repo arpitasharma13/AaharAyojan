@@ -1,7 +1,6 @@
 # Food Donation Management System
 
 A web application which is useful for management of food donation and collection activities.  
-[View Demo](https://food-aid-aayush.herokuapp.com/)
 
 ## Table of Contents
 * [Features](#features)
@@ -110,5 +109,4 @@ For running the application:
 - VS Code keyboard shortcuts: https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 
 ## Contact
-- Email: aayush5521186@gmail.com
-- Linkedin: https://www.linkedin.com/in/aayush12/
+- Email: 13.arpitasharma@gmail.com
