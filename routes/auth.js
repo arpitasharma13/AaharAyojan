@@ -76,9 +76,11 @@ router.post("/auth/login", middleware.ensureNotLoggedIn,
 );
 
 router.get("/auth/logout", (req,res) => {
-	req.logout();
-	req.flash("success", "Logged-out successfully")
-	res.redirect("/");
+	req.logout(err => {
+		if (err) return;
+		res.redirect('/');
+		req.flash("success", "Logged-out successfully")
+	  });
 });
 
 
