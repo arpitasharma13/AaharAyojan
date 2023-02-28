@@ -3,39 +3,6 @@ const router = express.Router();
 const middleware = require("../middleware/index.js");
 const User = require("../models/user.js");
 const Donation = require("../models/donation.js");
-const Donor = require('../models/donor');
-const Donation = require('../models/donation');
-const Agent = require('../models/agent');
-
-// Assign a donation to an agent
-router.post('/assignDonation', async (req, res) => {
-	try {
-	  const { donationId, agentId } = req.body;
-  
-	  // Update the donation with the assigned agent's ID
-	  await Donation.findByIdAndUpdate(donationId, { assignedTo: agentId });
-  
-	  // Get the agent's phone number from the database
-	  const agent = await Agent.findById(agentId);
-	  const agentPhoneNumber = agent.phone;
-  
-	  // Send an SMS to the agent using Twilio
-	  const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-	  const message = await client.messages.create({
-		body: `You have been assigned a new donation. Please log in to your account to view the details.`,
-		from: process.env.TWILIO_PHONE_NUMBER,
-		to: agentPhoneNumber
-	  });
-  
-	  console.log(`SMS sent to ${agentPhoneNumber}: ${message.sid}`);
-  
-	  res.status(200).json({ success: true });
-	} catch (err) {
-	  console.error(err);
-	  res.status(500).json({ success: false, message: 'An error occurred while assigning the donation.' });
-	}
-  });
-  
 
 router.get("/donor/dashboard", middleware.ensureDonorLoggedIn, async (req,res) => {
 	const donorId = req.user._id;
