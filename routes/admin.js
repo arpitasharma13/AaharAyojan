@@ -135,7 +135,28 @@ router.post("/admin/donation/assign/:donationId", middleware.ensureAdminLoggedIn
 		  pass: "MajorProject123",
 		},
 	  });
-  
+
+	  function sendEmailToAgent(donorName, agentEmail) {
+		const message = {
+			from: 'your_email@gmail.com',
+			to: agentEmail,
+			subject: 'New Donor Registration',
+			text: `A new donor named ${donorName} has registered on our platform.`
+		};
+	
+		transporter.sendMail(message, function(error, info){
+			if (error) {
+				console.log(error);
+			} else {
+				console.log('Email sent: ' + info.response);
+			}
+		});
+	}
+	
+	module.exports = {
+		sendEmailToAgent
+	};
+	  
 	  const mailOptions = {
 		from: "aaharayojan@gmail.com",
 		to: agentEmail,
