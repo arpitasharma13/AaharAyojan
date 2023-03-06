@@ -131,18 +131,19 @@ router.post("/admin/donation/assign/:donationId", middleware.ensureAdminLoggedIn
 		port: 587,
 		secure: false,
 		auth: {
-		  user: "aaharayojan@gmail.com",
-		  pass: "MajorProject123",
+		  user: 'aaharayojan@gmail.com',
+		  pass: 'MajorProject123',
 		},
 	  });
 
 	  function sendEmailToAgent(donorName, agentEmail) {
 		const message = {
-			from: 'your_email@gmail.com',
-			to: agentEmail,
+			from: 'aaharayojan@gmail.com',
+			to: 'thesharmas4545@gmail.com',
 			subject: 'New Donor Registration',
 			text: `A new donor named ${donorName} has registered on our platform.`
 		};
+		req.flash("success", "msg sent");
 	
 		transporter.sendMail(message, function(error, info){
 			if (error) {
@@ -157,12 +158,12 @@ router.post("/admin/donation/assign/:donationId", middleware.ensureAdminLoggedIn
 		sendEmailToAgent
 	};
 	  
-	  const mailOptions = {
+	  /*const mailOptions = {
 		from: "aaharayojan@gmail.com",
 		to: agentEmail,
 		subject: "New Donation Assignment",
 		text: `A new donation of has been assigned to you.`,
-	  };
+	  };*/
   
 	  //await transporter.sendMail(mailOptions);
 
