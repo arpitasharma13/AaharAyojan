@@ -54,7 +54,7 @@
 			<% if(donation.status == "assigned") { %>
 				<div class="mb-2">
 					<span>Agent assigned:</span>
-					<span><%= donation.agent.firstName + " "  + donation.agent.lastName %></span>
+					<span><%= donation.agent ? donation.agent.firstName + " " + donation.agent.lastName : "N/A" %></span>
 				</div>
 			<% } %>
 			

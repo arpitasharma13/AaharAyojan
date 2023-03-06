@@ -45,9 +45,9 @@
 							<span class="text-rejected">Your donation request has been rejected</span>
 						<% } else if(pendingDonations[i].status == "accepted") { %>
 							<span class="text-accepted">Your donation request has been accepted. Please wait while an agent is being assigned.</span>
-						<% } else if(pendingDonations[i].status == "assigned") { %>
-							<span class="text-assigned">Your donation request has been accepted and the agent: <%= pendingDonations[i].agent.firstName + " " + pendingDonations[i].agent.lastName %> has been assigned for collecting food from your house.</span>
-						<% } %>
+							<% } else if(pendingDonations[i].status == "assigned" && pendingDonations[i].agent) { %>
+								<span class="text-assigned">Your donation request has been accepted and the agent: <%= pendingDonations[i].agent.firstName + " " + pendingDonations[i].agent.lastName %> has been assigned for collecting food from your house.</span>
+							<% } %>
 					</div>
 					
 					<% if(pendingDonations[i].status == "rejected") { %>
