@@ -127,7 +127,9 @@ router.post("/admin/donation/assign/:donationId", middleware.ensureAdminLoggedIn
 	  const agentEmail = agent.email;
   
 	  const transporter = nodemailer.createTransport({
-		service: "gmail",
+		host: "smtp.ethereal.email",
+		port: 587,
+		secure: false,
 		auth: {
 		  user: "aaharayojan@gmail.com",
 		  pass: "MajorProject123",
@@ -142,6 +144,8 @@ router.post("/admin/donation/assign/:donationId", middleware.ensureAdminLoggedIn
 	  };
   
 	  //await transporter.sendMail(mailOptions);
+
+	  
   
 	  req.flash("success", "Agent assigned successfully");
 	  res.redirect(`/admin/donation/view/${donationId}`);
